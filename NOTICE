@@ -1,0 +1,20 @@
+fflab — FFmpeg filtergraph interactive lab
+Copyright (c) 2026 fflab contributors
+
+This product invokes FFmpeg as an external command-line program.
+It does not link against, embed, or redistribute FFmpeg or its libraries.
+
+FFmpeg
+  Homepage: https://ffmpeg.org/
+  Source:   https://github.com/FFmpeg/FFmpeg
+  License:  LGPL v2.1 or later by default.
+            If built with --enable-gpl (and/or linked with GPL libraries such as
+            libx264/libx265), the resulting binary is licensed under GPL v2 or later.
+  See docs/SOURCES.md for the exact upstream wording and the license status of the
+  build used during development (GPL v2+, gyan.dev 7.1 essentials build).
+
+Media assets under workspace/assets are NOT shipped with this repository.
+They are synthesized at runtime from FFmpeg's built-in lavfi sources
+(testsrc2, sine), so no third-party media is redistributed.
+
+The UI uses no third-party JavaScript, CSS frameworks, or fonts.

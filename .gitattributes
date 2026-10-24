@@ -1,0 +1,11 @@
+# 统一换行:仓库内存 LF,避免 Windows 提交后出现整文件假 diff
+* text=auto eol=lf
+
+# 批处理依赖 CRLF,单独放行
+*.cmd text eol=crlf
+
+# 二进制资源不做换行转换
+*.png binary
+*.zip binary
+*.mp4 binary
+*.wav binary

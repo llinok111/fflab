@@ -1,0 +1,93 @@
+### 环境
+ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+Python 3.13.14
+v22.22.2
+
+### 单元测试
+test_amix_normalize_drops_about_6db (test_fflab.TestMeasurement.test_amix_normalize_drops_about_6db)
+amix 默认 normalize=1 的 6dB 衰减必须真实存在,否则第 3 步教学点不成立. ... ok
+test_frame_hashes_are_deterministic (test_fflab.TestMeasurement.test_frame_hashes_are_deterministic) ... ok
+test_loudness_readable (test_fflab.TestMeasurement.test_loudness_readable) ... ok
+test_probe_known_facts (test_fflab.TestMeasurement.test_probe_known_facts) ... ok
+test_asset_fingerprint_detects_tamper (test_fflab.TestSandbox.test_asset_fingerprint_detects_tamper) ... ok
+test_guard_rejects_movie_filter_outside (test_fflab.TestSandbox.test_guard_rejects_movie_filter_outside) ... ok
+test_guard_rejects_overwrite_asset (test_fflab.TestSandbox.test_guard_rejects_overwrite_asset) ... ok
+test_guard_rejects_protocol_input (test_fflab.TestSandbox.test_guard_rejects_protocol_input) ... ok
+test_init_is_idempotent (test_fflab.TestSandbox.test_init_is_idempotent) ... ok
+test_path_guard_absolute_escape (test_fflab.TestSandbox.test_path_guard_absolute_escape) ... ok
+test_path_guard_allows_inside (test_fflab.TestSandbox.test_path_guard_allows_inside) ... ok
+test_path_guard_relative_escape (test_fflab.TestSandbox.test_path_guard_relative_escape) ... ok
+test_reset_all_rebuilds_assets (test_fflab.TestSandbox.test_reset_all_rebuilds_assets) ... ok
+test_reset_work_keeps_assets (test_fflab.TestSandbox.test_reset_work_keeps_assets) ... ok
+test_index_served (test_fflab.TestServer.test_index_served) ... ok
+test_reset_endpoint (test_fflab.TestServer.test_reset_endpoint) ... ok
+test_run_endpoint_full_flow (test_fflab.TestServer.test_run_endpoint_full_flow) ... ok
+test_run_rejects_escape_path (test_fflab.TestServer.test_run_rejects_escape_path) ... ok
+test_state_shape (test_fflab.TestServer.test_state_shape) ... ok
+test_amix_without_normalize0_is_rejected (test_fflab.TestTutorial.test_amix_without_normalize0_is_rejected)
+默认归一化导致 -6dB => 必须被电平断言拒. ... ok
+test_full_flow_passes (test_fflab.TestTutorial.test_full_flow_passes) ... ok
+test_no_shell_escape_on_stdin_pipe (test_fflab.TestTutorial.test_no_shell_escape_on_stdin_pipe)
+确认 execute 不接受管道符,避免注入到 shell. ... ok
+test_progress_persists_and_is_relative (test_fflab.TestTutorial.test_progress_persists_and_is_relative) ... ok
+test_shell_metacharacters_rejected (test_fflab.TestTutorial.test_shell_metacharacters_rejected) ... ok
+test_shortest_truncation_is_rejected (test_fflab.TestTutorial.test_shortest_truncation_is_rejected)
+少写 apad 导致成片被截成 4 秒 => 必须被时长断言拒. ... ok
+test_split_command_keeps_quoted_filtergraph (test_fflab.TestTutorial.test_split_command_keeps_quoted_filtergraph) ... ok
+test_wrong_scale_is_rejected (test_fflab.TestTutorial.test_wrong_scale_is_rejected)
+不缩放就交付 => 必须被拒(维度断言). ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 21.189s
+
+OK
+
+### CLI demo 全流程
+PASS  s1-unify  rc=0
+PASS  s2-concat  rc=0
+PASS  s3-mix  rc=0
+PASS  s4-mux  rc=0
+PASS  s5-deliver  rc=0
+
+最终: 全流程通过
+
+### 界面端到端 (CDP)
+PASS  侧栏渲染出 5 个步骤  实测 5
+PASS  主区显示当前步骤标题  第 1 步 · 把两段素材统一到同一规格
+PASS  关键文本块无重叠  重叠对数 0
+PASS  无横向溢出  [0,0]
+SHOT  01-step1-idle.png
+PASS  步骤 1 界面执行通过  verdict pass|通过 —— 这一步的产物符合全部断言 · 断言 8 条 · 失败 0
+SHOT  02-step1-passed.png
+PASS  步骤 2 界面执行通过  verdict pass|通过 —— 这一步的产物符合全部断言 · 断言 8 条 · 失败 0
+PASS  步骤 3 界面执行通过  verdict pass|通过 —— 这一步的产物符合全部断言 · 断言 6 条 · 失败 0
+PASS  步骤 4 界面执行通过  verdict pass|通过 —— 这一步的产物符合全部断言 · 断言 9 条 · 失败 0
+PASS  步骤 5 界面执行通过  verdict pass|通过 —— 这一步的产物符合全部断言 · 断言 11 条 · 失败 0
+PASS  完成横幅出现  
+PASS  进度显示 100%  实测 100%
+SHOT  03-all-completed.png
+PASS  越界命令被界面拦下  执行失败:路径越界: E:\WorkBuddy-Work\workbuddy-github-2\evil.mp4 不在练
+SHOT  04-escape-rejected.png
+PASS  重置后进度归零  已通过步骤 0
+
+合计 13 项,失败 0 项
+
+### 截图像素统计
+OK   01-step1-idle.png  1414x907  色数=2330  亮度=32.69  分带σ=4.74
+OK   02-step1-passed.png  1414x907  色数=2805  亮度=34.87  分带σ=3.48
+OK   03-all-completed.png  1414x907  色数=2463  亮度=35.3  分带σ=3.12
+OK   04-escape-rejected.png  1414x907  色数=2516  亮度=34.04  分带σ=4.12
+
+### 统计器反例自检(纯色图应判 FAIL)
+FAIL black.png  1400x900  色数=1  亮度=0.0  分带σ=0.0
+       -> 去重色数 1 < 40
+       -> 平均亮度 0.0 越界
+       -> 分带标准差 0.0 < 1.0(疑似纯色/半渲染)
+FAIL white.png  1400x900  色数=1  亮度=255.0  分带σ=0.0
+       -> 去重色数 1 < 40
+       -> 平均亮度 255.0 越界
+       -> 分带标准差 0.0 < 1.0(疑似纯色/半渲染)
+FAIL flat.png  1400x900  色数=1  亮度=25.0  分带σ=0.0
+       -> 去重色数 1 < 40
+       -> 分带标准差 0.0 < 1.0(疑似纯色/半渲染)

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img"
+     aria-label="fflab 五步流程：统一规格、拼接、混音、合流、交付，每一步都有对应的实测判据">
+  <rect width="1200" height="360" fill="#1A1A1A"/>
+  <g font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+    <text x="48" y="52" fill="#6495ED" font-size="12" letter-spacing="3">FFLAB PIPELINE</text>
+    <text x="48" y="84" fill="#F0F0F0" font-size="20" font-weight="600">五步流程，每一步都有可测量的判据</text>
+
+    <!-- 连接线 -->
+    <g stroke="#666666" stroke-width="1.5">
+      <line x1="252" y1="176" x2="286" y2="176"/>
+      <line x1="468" y1="176" x2="502" y2="176"/>
+      <line x1="684" y1="176" x2="718" y2="176"/>
+      <line x1="900" y1="176" x2="934" y2="176"/>
+    </g>
+    <g fill="#666666">
+      <polygon points="286,176 276,171 276,181"/>
+      <polygon points="502,176 492,171 492,181"/>
+      <polygon points="718,176 708,171 708,181"/>
+      <polygon points="934,176 924,171 924,181"/>
+    </g>
+
+    <!-- 第 1 步 -->
+    <rect x="48" y="116" width="204" height="120" rx="8" fill="#262626" stroke="#3D3D3D"/>
+    <text x="68" y="146" fill="#999999" font-size="11" font-family="Consolas, monospace">s1-unify</text>
+    <text x="68" y="176" fill="#F0F0F0" font-size="17" font-weight="600">统一规格</text>
+    <text x="68" y="200" fill="#CCCCCC" font-size="12">scale + fps + format</text>
+    <text x="68" y="222" fill="#6495ED" font-size="12" font-family="Consolas, monospace">640×360@30 yuv420p</text>
+
+    <!-- 第 2 步 -->
+    <rect x="264" y="116" width="204" height="120" rx="8" fill="#262626" stroke="#3D3D3D"/>
+    <text x="284" y="146" fill="#999999" font-size="11" font-family="Consolas, monospace">s2-concat</text>
+    <text x="284" y="176" fill="#F0F0F0" font-size="17" font-weight="600">拼接</text>
+    <text x="284" y="200" fill="#CCCCCC" font-size="12">concat=n=2:v=1:a=0</text>
+    <text x="284" y="222" fill="#6495ED" font-size="12" font-family="Consolas, monospace">209 帧 / 6.97s</text>
+
+    <!-- 第 3 步 -->
+    <rect x="480" y="116" width="204" height="120" rx="8" fill="#262626" stroke="#3D3D3D"/>
+    <text x="500" y="146" fill="#999999" font-size="11" font-family="Consolas, monospace">s3-mix</text>
+    <text x="500" y="176" fill="#F0F0F0" font-size="17" font-weight="600">混音</text>
+    <text x="500" y="200" fill="#CCCCCC" font-size="12">amix normalize=0</text>
+    <text x="500" y="222" fill="#6495ED" font-size="12" font-family="Consolas, monospace">Δ ≤ ±1 dB</text>
+
+    <!-- 第 4 步 -->
+    <rect x="696" y="116" width="204" height="120" rx="8" fill="#262626" stroke="#3D3D3D"/>
+    <text x="716" y="146" fill="#999999" font-size="11" font-family="Consolas, monospace">s4-mux</text>
+    <text x="716" y="176" fill="#F0F0F0" font-size="17" font-weight="600">合流</text>
+    <text x="716" y="200" fill="#CCCCCC" font-size="12">apad + -map + -shortest</text>
+    <text x="716" y="222" fill="#6495ED" font-size="12" font-family="Consolas, monospace">7.15s 双流</text>
+
+    <!-- 第 5 步 -->
+    <rect x="912" y="116" width="204" height="120" rx="8" fill="#262626" stroke="#3D3D3D"/>
+    <text x="932" y="146" fill="#999999" font-size="11" font-family="Consolas, monospace">s5-deliver</text>
+    <text x="932" y="176" fill="#F0F0F0" font-size="17" font-weight="600">交付</text>
+    <text x="932" y="200" fill="#CCCCCC" font-size="12">loudnorm → H.264 + AAC</text>
+    <text x="932" y="222" fill="#6495ED" font-size="12" font-family="Consolas, monospace">-16.1 LUFS</text>
+
+    <!-- 底部说明 -->
+    <line x1="48" y1="276" x2="1152" y2="276" stroke="#3D3D3D"/>
+    <text x="48" y="304" fill="#999999" font-size="12">判分 = 命令形态（是否用了正确手段）+ 产物测量（是否拿到正确结果）</text>
+    <text x="48" y="328" fill="#999999" font-size="12">三处静默失败点：规格不一致报 pad 配置失败 · amix 默认 -6dB · -shortest 砍画面</text>
+    <text x="1152" y="328" fill="#666666" font-size="11" text-anchor="end" font-family="Consolas, monospace">fflab 1.0.0</text>
+  </g>
+</svg>
